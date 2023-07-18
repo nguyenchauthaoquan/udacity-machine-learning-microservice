@@ -21,6 +21,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            python3.7 -m pip install --user virtualenv
             python3.7 -m venv venv
             . venv/bin/activate
             make install
