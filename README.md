@@ -1,4 +1,4 @@
-<include a CircleCI status badge, here>
+[![nguyenchauthaoquan](https://circleci.com/gh/nguyenchauthaoquan/udacity-machine-learning-microservice.svg?style=svg)](https://circleci.com/gh/nguyenchauthaoquan/udacity-machine-learning-microservice)
 
 ## Project Overview
 
