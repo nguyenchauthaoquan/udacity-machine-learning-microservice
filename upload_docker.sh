@@ -5,11 +5,14 @@
 
 # Step 1:
 # Create dockerpath
-# dockerpath=<your docker ID/path>
+dockerpath=quannct/microservice-machine-learning
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
 
+docker login
+docker tag microservice-machine-learning $dockerpath:latest
 # Step 3:
 # Push image to a docker repository
+docker push $dockerpath:latest
