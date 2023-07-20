@@ -1,18 +1,34 @@
 # 1st attempt
-./run_kubernetes.sh
 pod/microservice-machine-learning created
-NAME                            READY   STATUS    RESTARTS   AGE
-microservice-machine-learning   0/1     Pending   0          1s
+NAME                            READY   STATUS              RESTARTS   AGE
+microservice-machine-learning   0/1     ContainerCreating   0          1s
 error: unable to forward port because pod is not running. Current status=Pending
 
 # 2nd attempt
 ./run_kubernetes.sh
 Error from server (AlreadyExists): pods "microservice-machine-learning" already exists
 NAME                            READY   STATUS    RESTARTS   AGE
-microservice-machine-learning   1/1     Running   0          9m9s
+microservice-machine-learning   1/1     Running   0          10m
+Forwarding from 127.0.0.1:8080 -> 80
+
+# 3rd attempt
+
+./run_kubernetes.sh                                        10m
+Error from server (AlreadyExists): pods "microservice-machine-learning" already exists                        e-learning-microservice (features/ResolveFeedbacks)      
+NAME                            READY   STATUS    RESTARTS   AGE                                              achine-learning" already exists
+microservice-machine-learning   1/1     Running   0    RTS   AGE
+      10m                                                    10m
 Forwarding from 127.0.0.1:8080 -> 80
 Handling connection for 8080
-Handling connection for 8080
+
+# results
+./make_prediction.sh
+Port: 8080
+{
+  "prediction": [    
+    20.35373177134412
+  ]
+}
 
 # Pod logging outputs
 kubectl logs microservice-machine-learning
@@ -24,26 +40,15 @@ kubectl logs microservice-machine-learning
  * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
  * Restarting with stat
  * Debugger is active!
- * Debugger PIN: 141-372-788
-[2023-07-19 16:58:10,140] INFO in app: JSON payload:
+ * Debugger PIN: 743-937-683
+[2023-07-20 15:34:03,898] INFO in app: JSON payload:
 {'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
-[2023-07-19 16:58:10,163] INFO in app: Inference payload DataFrame:     
+[2023-07-20 15:34:03,924] INFO in app: Inference payload DataFrame:
    CHAS     RM    TAX  PTRATIO      B  LSTAT
 0     0  6.575  296.0     15.3  396.9   4.98
-[2023-07-19 16:58:10,185] INFO in app: Scaling Payload:
+[2023-07-20 15:34:03,939] INFO in app: Scaling Payload:
    CHAS     RM    TAX  PTRATIO      B  LSTAT
 0     0  6.575  296.0     15.3  396.9   4.98
-[2023-07-19 16:58:10,190] INFO in app: output prediction:
+[2023-07-20 15:34:03,946] INFO in app: output prediction:
 [20.35373177134412]
-127.0.0.1 - - [19/Jul/2023 16:58:10] "POST /predict HTTP/1.1" 200 -     
-[2023-07-19 17:00:21,061] INFO in app: JSON payload:
-{'CHAS': {'0': 0}, 'RM': {'0': 6.575}, 'TAX': {'0': 296.0}, 'PTRATIO': {'0': 15.3}, 'B': {'0': 396.9}, 'LSTAT': {'0': 4.98}}
-[2023-07-19 17:00:21,087] INFO in app: Inference payload DataFrame: 
-   CHAS     RM    TAX  PTRATIO      B  LSTAT
-0     0  6.575  296.0     15.3  396.9   4.98
-[2023-07-19 17:00:21,106] INFO in app: Scaling Payload:
-   CHAS     RM    TAX  PTRATIO      B  LSTAT
-0     0  6.575  296.0     15.3  396.9   4.98
-[2023-07-19 17:00:21,112] INFO in app: output prediction:
-[20.35373177134412]
-127.0.0.1 - - [19/Jul/2023 17:00:21] "POST /predict HTTP/1.1" 200 - 
+127.0.0.1 - - [20/Jul/2023 15:34:03] "POST /predict HTTP/1.1" 200 -
